@@ -8,9 +8,9 @@ PORT = 3333
 
 @app.route("/", methods=["GET"])
 def index():
-    def formatted_response(
+    def _formatted_response(
         _: str,
-    ) -> list[str]:
+    ):
         _ = _.split(
             ",",
         )
@@ -22,7 +22,7 @@ def index():
         ):
             return jsonify(
                 {
-                    "length": 1,
+                    "length": 0,
                     "ip": "unknown",
                 },
             )
@@ -41,12 +41,11 @@ def index():
     if not request.environ.get(
         "HTTP_X_FORWARDED_FOR",
     ):
-        print("4")
-        return formatted_response(
+        return _formatted_response(
             request.environ["REMOTE_ADDR"],
         )
     else:
-        return formatted_response(
+        return _formatted_response(
             request.environ["HTTP_X_FORWARDED_FOR"],
         ),
 
