@@ -19,7 +19,7 @@ def index():
 
         return jsonify(
             {
-                "count": len(
+                "length": len(
                     _,
                 ),
                 "ip": _,
