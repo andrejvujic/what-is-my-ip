@@ -13,16 +13,23 @@ def index():
     ) -> list[str]:
         _ = _.split(
             ",",
-        ),
+        )
 
         _ = [e.strip() for e in _]
+
+        if not len(
+            _,
+        ):
+            _ = "unknown"
 
         return jsonify(
             {
                 "length": len(
                     _,
                 ),
-                "ip": _,
+                "ip": _ if len(
+                    _,
+                ) > 1 else _[0],
             }
         )
 
