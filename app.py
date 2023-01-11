@@ -8,18 +8,32 @@ PORT = 3333
 
 @app.route("/", methods=["GET"])
 def index():
-    if not request.environ.get('HTTP_X_FORWARDED_FOR'):
+    def formatted_response(
+        _: str,
+    ) -> list[str]:
+        _ = _.split(
+            ",",
+        ),
+
+        _ = [e.strip() for e in _]
+
         return jsonify(
             {
-                "ip": request.environ['REMOTE_ADDR'],
-            },
+                "count": len(
+                    _,
+                ),
+                "ip": _,
+            }
+        )
+
+    if not request.environ.get('HTTP_X_FORWARDED_FOR'):
+        return formatted_response(
+            request.environ['REMOTE_ADDR'],
         )
     else:
-        return jsonify(
-            {
-                "ip": request.environ['HTTP_X_FORWARDED_FOR'],
-            },
-        )
+        return formatted_response(
+            request.environ['HTTP_X_FORWARDED_FOR'],
+        ),
 
 
 if __name__ == "__main__":
