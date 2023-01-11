@@ -17,6 +17,10 @@ def index():
 
         _ = [e.strip() for e in _]
 
+        print(
+            "21", _,
+        )
+
         if not len(
             _,
         ):
@@ -36,6 +40,7 @@ def index():
     if not request.environ.get(
         "HTTP_X_FORWARDED_FOR",
     ):
+        print("4")
         return formatted_response(
             request.environ["REMOTE_ADDR"],
         )
