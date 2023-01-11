@@ -17,14 +17,15 @@ def index():
 
         _ = [e.strip() for e in _]
 
-        print(
-            "21", _,
-        )
-
         if not len(
             _,
         ):
-            _ = "unknown"
+            return jsonify(
+                {
+                    "length": 1,
+                    "ip": "unknown",
+                },
+            )
 
         return jsonify(
             {
