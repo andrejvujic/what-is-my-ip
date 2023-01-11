@@ -15,7 +15,11 @@ def index():
             ",",
         )
 
-        _ = [e.strip() for e in _]
+        _ = list(
+            set(
+                [e.strip() for e in _],
+            )
+        )
 
         if not len(
             _,
