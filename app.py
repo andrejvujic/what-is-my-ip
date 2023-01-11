@@ -11,30 +11,9 @@ def index():
     def _formatted_response(
         _: str,
     ):
-        _ = _.split(
-            ",",
-        )
-
-        _ = [e.strip() for e in _]
-
-        if not len(
-            _,
-        ):
-            return jsonify(
-                {
-                    "length": 0,
-                    "ip": "unknown",
-                },
-            )
-
         return jsonify(
             {
-                "length": len(
-                    _,
-                ),
-                "ip": _ if len(
-                    _,
-                ) > 1 else _[0],
+                "ip": _,
             }
         )
 
