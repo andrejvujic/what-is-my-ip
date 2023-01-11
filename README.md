@@ -40,6 +40,53 @@ WARNING: This is a development server. Do not use it ina production deployment. 
 
 ```
 
+# What does the API return?
+
+Once the client makes a GET request to that endpoint they will their IP address returned in JSON format like this:
+
+```
+{
+     "ip": "...",
+     "length": ...
+}
+```
+
+The length key represents the number of IPs that were returned. If the length is 1, the return type of the first key which contains the IP address will be a string. However, if the length is greater than 1 then it's return type will be an array of strings. If no IP addresses are available the returned length will be 0 and the IP address will be shown as 'unknown'.
+
+Like this:
+
+1. No IPs are available:
+
+```
+{
+     "ip": "unknown",
+     "length": 0
+}
+```
+
+2. Only one IP address is available
+
+```
+{
+     "ip": "xxx.xxx.xxx.xxx",
+     "length": 1
+}
+```
+
+3. Multiple IP addresses are available
+
+```
+{
+     "ip": [
+          "xxx.xxx.xxx.xxx",
+          "xxx.xxx.xxx.xxx",
+          "xxx.xxx.xxx.xxx",
+          ...,
+     ],
+     "length": NUMBER_OF_AVAILABLE_IPs
+}
+```
+
 # Contact
 
 <a href="mailto:vujicandrej366@gmail.com">vujicandrej366@gmail.com</a>
