@@ -26,13 +26,15 @@ def index():
             }
         )
 
-    if not request.environ.get('HTTP_X_FORWARDED_FOR'):
+    if not request.environ.get(
+        "HTTP_X_FORWARDED_FOR",
+    ):
         return formatted_response(
-            request.environ['REMOTE_ADDR'],
+            request.environ["REMOTE_ADDR"],
         )
     else:
         return formatted_response(
-            request.environ['HTTP_X_FORWARDED_FOR'],
+            request.environ["HTTP_X_FORWARDED_FOR"],
         ),
 
 
